@@ -43,6 +43,21 @@ const handleV1Request = async (request: Request) => {
   if (!target || !arch || !appVersion || !semverValid(appVersion)) {
     return responses.NotFound()
   }
+  try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    S3SI_UPDATE.writeDataPoint({
+      blobs: [
+        target,
+        arch,
+        appVersion,
+      ],
+      doubles: [],
+      indexes: ['s3si_update']
+    })
+  } catch (e) {
+    console.error('Failed to write data', e)
+  }
   const release = await getLatestRelease(request)
 
   const remoteVersion = sanitizeVersion(release.tag_name.toLowerCase())

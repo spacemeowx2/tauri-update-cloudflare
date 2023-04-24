@@ -2,11 +2,12 @@ name = "tauri-update-server"
 workers_dev = true
 compatibility_date = "2022-03-26"
 main = "src/index.ts"
+analytics_engine_datasets = [{ binding = "S3SI_UPDATE" }]
 
 [vars]
 GITHUB_ACCOUNT = 'spacemeowx2'
 GITHUB_REPO = 's3si.ts'
-GITHUB_TOKEN = '' # Optional - used with private repos
+GITHUB_TOKEN = ''              # Optional - used with private repos
 
 [build]
 command = "npm install && npm run build"
