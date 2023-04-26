@@ -10,6 +10,9 @@ module.exports = {
   mode: 'development',
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
+    fallback: {
+      util: require.resolve('util/'),
+    },
   },
   module: {
     rules: [
